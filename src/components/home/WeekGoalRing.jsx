@@ -1,6 +1,6 @@
 import styles from './WeekGoalRing.module.css'
 
-const RADIUS = 28
+const RADIUS = 19
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
 function ringColor(completed) {
@@ -18,17 +18,17 @@ export function WeekGoalRing({ completed, goal }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.ring}>
-        <svg width="70" height="70" viewBox="0 0 70 70">
-          <circle cx="35" cy="35" r={RADIUS} className={styles.track} />
+        <svg width="52" height="52" viewBox="0 0 52 52">
+          <circle cx="26" cy="26" r={RADIUS} className={styles.track} />
           <circle
-            cx="35" cy="35" r={RADIUS}
+            cx="26" cy="26" r={RADIUS}
             className={styles.fill}
             strokeDasharray={CIRCUMFERENCE}
             strokeDashoffset={dashOffset}
             style={{
               stroke: color,
               transform: 'rotate(-90deg)',
-              transformOrigin: '35px 35px',
+              transformOrigin: '26px 26px',
             }}
           />
         </svg>

@@ -8,7 +8,7 @@
 
 .ring {
   position: relative;
-  width: 70px; height: 70px;
+  width: 52px; height: 52px;
   display: flex; align-items: center; justify-content: center;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .count {
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -43,7 +43,7 @@
 }
 
 .goal {
-  font-size: 0.65rem;
+  font-size: 0.55rem;
   font-weight: 500;
   color: var(--muted);
 }
