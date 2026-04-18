@@ -24,14 +24,11 @@ export function TrackerScreen() {
   }
 
   const handleSelect = (opt) => {
-    // Remove existing session for that day if any, then add new one
-    const date = new Date(pickerDay + 'T12:00:00')
-    date.setHours(0, 0, 0, 0)
     addSession({
       id:            crypto.randomUUID(),
       workoutId:     'manual-' + opt.type,
       workoutName:   opt.label,
-      date:          date.toISOString(),
+      date:          pickerDay + 'T00:00:00.000Z',
       durationSecs:  0,
       completedSets: 0,
       totalSets:     0,

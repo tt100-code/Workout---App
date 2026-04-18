@@ -3,8 +3,15 @@ import styles from './CalendarGrid.module.css'
 
 const WEEKDAYS = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
 
+const TYPE_COLORS = {
+  push:  '#4878A0',
+  pull:  '#4A9085',
+  leg:   '#7265B0',
+  run:   '#4D9A6A',
+  other: '#888888',
+}
+
 export function CalendarGrid({ year, month, dayTypes, onDayPress }) {
-  // dayTypes = Map of 'YYYY-MM-DD' → workoutType
   const date = new Date(year, month, 1)
   const daysInMonth = getDaysInMonth(date)
 
@@ -19,9 +26,7 @@ export function CalendarGrid({ year, month, dayTypes, onDayPress }) {
 
   return (
     <div className={styles.wrap}>
-      <p className={styles.monthLabel}>
-        {format(date, 'MMMM yyyy')}
-      </p>
+      <p className={styles.monthLabel}>{format(date, 'MMMM yyyy')}</p>
       <div className={styles.weekdays}>
         {WEEKDAYS.map(d => <span key={d}>{d}</span>)}
       </div>
@@ -30,27 +35,43 @@ export function CalendarGrid({ year, month, dayTypes, onDayPress }) {
           if (!day) return <div key={`e${i}`} />
           const key = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
           const workoutType = dayTypes.get(key)
-          const isActive = !!workoutType
           const isToday = today.getFullYear() === year && today.getMonth() === month && today.getDate() === day
+
+          // Circle background color
+          let circleBg = 'transparent'
+          let textColor = undefined
+          if (workoutType) {
+            circleBg = TYPE_COLORS[workoutType]
+            textColor = '#fff'
+          } else if (isToday) {
+            circleBg = 'rgba(0,0,0,0.5)'
+            textColor = '#fff'
+          }
 
           return (
             <button
               key={key}
-              className={`${styles.day} ${isActive ? styles.active : ''} ${isToday ? styles.today : ''}`}
+              className={styles.day}
               onClick={() => onDayPress(key, day)}
             >
-              <span>{day}</span>
-              {isActive && <span className={`${styles.dot} ${styles[workoutType]}`} />}
+              <span
+                className={styles.dayNum}
+                style={{ background: circleBg, color: textColor }}
+              >
+                {day}
+              </span>
             </button>
           )
         })}
       </div>
 
       <div className={styles.legend}>
-        <span className={styles.legendItem}><span className={`${styles.legendDot} ${styles.push}`}/>Push</span>
-        <span className={styles.legendItem}><span className={`${styles.legendDot} ${styles.pull}`}/>Pull</span>
-        <span className={styles.legendItem}><span className={`${styles.legendDot} ${styles.leg}`}/>Legs</span>
-        <span className={styles.legendItem}><span className={`${styles.legendDot} ${styles.run}`}/>Laufen</span>
+        {Object.entries(TYPE_COLORS).filter(([k]) => k !== 'other').map(([type, color]) => (
+          <span key={type} className={styles.legendItem}>
+            <span className={styles.legendDot} style={{ background: color }} />
+            {type === 'push' ? 'Push' : type === 'pull' ? 'Pull' : type === 'leg' ? 'Legs' : 'Laufen'}
+          </span>
+        ))}
       </div>
     </div>
   )

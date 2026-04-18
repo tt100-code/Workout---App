@@ -86,13 +86,13 @@ export function ActiveWorkoutScreen() {
     if (state.phase === STATES.DONE && !savedRef.current) {
       savedRef.current = true
       const durationSecs = Math.round((Date.now() - state.startTime) / 1000)
-      const today = new Date()
-      today.setHours(0, 0, 0, 0)
+      const now = new Date()
+      const dateKey = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`
       addSession({
         id:           crypto.randomUUID(),
         workoutId:    workout.id,
         workoutName:  workout.name,
-        date:         today.toISOString(),
+        date:         dateKey + 'T00:00:00.000Z',
         durationSecs,
         completedSets: state.completedSets,
         totalSets:    workout.exercises.reduce((a, e) => a + e.sets, 0),
