@@ -1,8 +1,8 @@
 .bar {
   position: sticky; top: 0; z-index: 40;
   display: flex; align-items: center;
-  height: 56px;
-  padding: 0 1rem;
+  height: calc(56px + var(--safe-top));
+  padding: var(--safe-top) 1rem 0;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
