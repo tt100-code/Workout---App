@@ -34,6 +34,35 @@ export function getMonthStats(history, referenceDate = new Date()) {
   return _calcStats(history, interval)
 }
 
+export function getStreak(history) {
+  if (history.length === 0) return 0
+
+  const trained = new Set(history.map(s => s.date.slice(0, 10)))
+
+  const key = (d) => {
+    const y = d.getFullYear()
+    const m = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    return `${y}-${m}-${day}`
+  }
+
+  const today = new Date()
+  const yesterday = new Date(today.getTime() - 86400000)
+
+  // Streak is broken if neither today nor yesterday has a workout
+  if (!trained.has(key(today)) && !trained.has(key(yesterday))) return 0
+
+  let streak = 0
+  let d = trained.has(key(today)) ? new Date(today) : new Date(yesterday)
+
+  while (trained.has(key(d))) {
+    streak++
+    d = new Date(d.getTime() - 86400000)
+  }
+
+  return streak
+}
+
 export function getYearStats(history, referenceDate = new Date()) {
   const interval = {
     start: startOfYear(referenceDate),

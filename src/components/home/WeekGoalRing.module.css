@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   flex-shrink: 0;
 }
 
@@ -16,15 +16,15 @@
 
 .track {
   fill: none;
-  stroke: var(--bg3);
-  stroke-width: 6;
+  stroke: #e5e5ea;
+  stroke-width: 5;
 }
 
 .fill {
   fill: none;
-  stroke-width: 6;
+  stroke-width: 5;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.6s ease, stroke 0.4s ease;
+  transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.5s ease;
 }
 
 .center {
@@ -39,28 +39,30 @@
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
-  transition: color 0.4s ease;
+  transition: color 0.5s ease;
 }
 
-.goal {
+.goalLabel {
   font-size: 0.55rem;
   font-weight: 500;
   color: var(--muted);
 }
 
-.controls {
+/* ─── Streak ─── */
+.streak {
   display: flex;
-  gap: 6px;
+  align-items: center;
+  gap: 2px;
 }
 
-.stepBtn {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--bg3);
-  color: var(--muted);
-  font-size: 0.9rem;
-  display: flex; align-items: center; justify-content: center;
-  touch-action: manipulation;
+.streak span:first-child {
+  font-size: 0.75rem;
   line-height: 1;
 }
-.stepBtn:active { background: var(--border); }
+
+.streakNum {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: -0.01em;
+}

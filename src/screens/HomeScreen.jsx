@@ -4,7 +4,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage'
 import { WorkoutCard } from '../components/workout/WorkoutCard'
 import { WeekGoalRing } from '../components/home/WeekGoalRing'
 import { BottomNav } from '../components/layout/BottomNav'
-import { getWeekStats } from '../utils/statsCalculator'
+import { getWeekStats, getStreak } from '../utils/statsCalculator'
 import styles from './HomeScreen.module.css'
 
 export function HomeScreen() {
@@ -13,6 +13,7 @@ export function HomeScreen() {
   const [weekGoal, setWeekGoal] = useLocalStorage('ft_week_goal', 5)
 
   const weekStats = getWeekStats(history)
+  const streak    = getStreak(history)
 
   return (
     <div className={styles.page}>
@@ -25,7 +26,7 @@ export function HomeScreen() {
           <WeekGoalRing
             completed={weekStats.workouts}
             goal={weekGoal}
-            onChangeGoal={setWeekGoal}
+            streak={streak}
           />
         </div>
 
