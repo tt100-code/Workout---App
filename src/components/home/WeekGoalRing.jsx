@@ -1,42 +1,46 @@
 import styles from './WeekGoalRing.module.css'
 
-const RADIUS = 40
+const RADIUS = 28
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
+function ringColor(completed) {
+  if (completed >= 4) return '#34c759' // grün
+  if (completed === 3) return '#ff9500' // orange
+  if (completed >= 1) return '#ff3b30' // rot
+  return 'var(--bg3)'                  // noch nichts
+}
+
 export function WeekGoalRing({ completed, goal, onChangeGoal }) {
-  const progress  = goal > 0 ? Math.min(completed / goal, 1) : 0
+  const progress   = goal > 0 ? Math.min(completed / goal, 1) : 0
   const dashOffset = CIRCUMFERENCE * (1 - progress)
-  const done = completed >= goal
+  const color      = ringColor(completed)
 
   return (
-    <div className={styles.card}>
-      <div className={styles.left}>
-        <p className={styles.title}>Wochenziel</p>
-        <p className={styles.sub}>
-          {done ? '🎉 Ziel erreicht!' : `Noch ${goal - completed} Training${goal - completed === 1 ? '' : 's'} diese Woche`}
-        </p>
-        <div className={styles.goalControl}>
-          <button className={styles.stepBtn} onClick={() => onChangeGoal(Math.max(1, goal - 1))}>−</button>
-          <span className={styles.goalNum}>{goal}× / Woche</span>
-          <button className={styles.stepBtn} onClick={() => onChangeGoal(Math.min(14, goal + 1))}>+</button>
-        </div>
-      </div>
-
+    <div className={styles.wrap}>
       <div className={styles.ring}>
-        <svg width="100" height="100" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r={RADIUS} className={styles.track} />
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r={RADIUS} className={styles.track} />
           <circle
-            cx="50" cy="50" r={RADIUS}
-            className={`${styles.fill} ${done ? styles.fillDone : ''}`}
+            cx="35" cy="35" r={RADIUS}
+            className={styles.fill}
             strokeDasharray={CIRCUMFERENCE}
             strokeDashoffset={dashOffset}
-            style={{ transform: 'rotate(-90deg)', transformOrigin: '50px 50px' }}
+            style={{
+              stroke: color,
+              transform: 'rotate(-90deg)',
+              transformOrigin: '35px 35px',
+            }}
           />
         </svg>
         <div className={styles.center}>
-          <span className={styles.count}>{completed}</span>
-          <span className={styles.total}>/{goal}</span>
+          <span className={styles.count} style={{ color }}>{completed}</span>
+          <span className={styles.goal}>/{goal}</span>
         </div>
+      </div>
+
+      <div className={styles.controls}>
+        <button className={styles.stepBtn} onClick={() => onChangeGoal(Math.max(1, goal - 1))}>−</button>
+        <button className={styles.stepBtn} onClick={() => onChangeGoal(Math.min(14, goal + 1))}>+</button>
       </div>
     </div>
   )

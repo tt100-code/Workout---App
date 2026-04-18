@@ -10,7 +10,7 @@ import styles from './HomeScreen.module.css'
 export function HomeScreen() {
   const { workouts, history } = useApp()
   const navigate = useNavigate()
-  const [weekGoal, setWeekGoal] = useLocalStorage('ft_week_goal', 4)
+  const [weekGoal, setWeekGoal] = useLocalStorage('ft_week_goal', 5)
 
   const weekStats = getWeekStats(history)
 
@@ -18,17 +18,18 @@ export function HomeScreen() {
     <div className={styles.page}>
       <div className="screen">
         <div className={styles.header}>
-          <h1 className={styles.title}>Meine Workouts</h1>
-          <p className={styles.sub}>{workouts.length} Trainingspläne</p>
-        </div>
-
-        <div className={styles.list}>
+          <div className={styles.headerLeft}>
+            <h1 className={styles.title}>Meine Workouts</h1>
+            <p className={styles.sub}>{workouts.length} Trainingspläne</p>
+          </div>
           <WeekGoalRing
             completed={weekStats.workouts}
             goal={weekGoal}
             onChangeGoal={setWeekGoal}
           />
+        </div>
 
+        <div className={styles.list}>
           {workouts.map(w => (
             <WorkoutCard key={w.id} workout={w} />
           ))}
