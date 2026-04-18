@@ -1,4 +1,4 @@
-import { startOfWeek, endOfWeek, startOfMonth, endOfMonth, parseISO, isWithinInterval } from 'date-fns'
+import { startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear, parseISO, isWithinInterval } from 'date-fns'
 
 export function getDayWorkoutTypes(history) {
   // Returns a Map of 'YYYY-MM-DD' → workoutType string
@@ -30,6 +30,14 @@ export function getMonthStats(history, referenceDate = new Date()) {
   const interval = {
     start: startOfMonth(referenceDate),
     end:   endOfMonth(referenceDate),
+  }
+  return _calcStats(history, interval)
+}
+
+export function getYearStats(history, referenceDate = new Date()) {
+  const interval = {
+    start: startOfYear(referenceDate),
+    end:   endOfYear(referenceDate),
   }
   return _calcStats(history, interval)
 }
