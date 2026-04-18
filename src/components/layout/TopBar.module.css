@@ -1,0 +1,35 @@
+.bar {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center;
+  height: 56px;
+  padding: 0 1rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.back {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent2);
+  border-radius: 50%;
+  touch-action: manipulation;
+  flex-shrink: 0;
+}
+.back:active { background: var(--bg3); }
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.action {
+  width: 36px;
+  display: flex; align-items: center; justify-content: flex-end;
+  flex-shrink: 0;
+}

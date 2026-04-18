@@ -1,0 +1,71 @@
+.wrap {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1.2rem;
+  padding: 2rem 1.5rem;
+  flex: 1;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.ring {
+  position: relative;
+  width: 140px; height: 140px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 1rem 0;
+}
+
+.ring svg {
+  position: absolute; inset: 0;
+  transform: rotate(-90deg);
+}
+
+.track {
+  fill: none;
+  stroke: var(--bg3);
+  stroke-width: 8;
+}
+
+.fill {
+  fill: none;
+  stroke: var(--warning);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.center {
+  display: flex; flex-direction: column; align-items: center;
+  z-index: 1;
+}
+
+.seconds {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--warning);
+  line-height: 1;
+}
+
+.sec {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.skipBtn {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  touch-action: manipulation;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s;
+  margin-top: auto;
+}
+.skipBtn:active { color: var(--text); }

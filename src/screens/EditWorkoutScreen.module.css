@@ -1,0 +1,99 @@
+.page { display: flex; flex-direction: column; height: 100%; }
+
+.saveBtn {
+  color: var(--accent2);
+  font-size: 0.9rem;
+  font-weight: 700;
+  touch-action: manipulation;
+}
+
+.section {
+  padding: 1.2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 0.75rem;
+}
+
+.nameRow {
+  display: flex; align-items: center; gap: 0.75rem;
+}
+
+.emojiBtn {
+  font-size: 2rem;
+  width: 52px; height: 52px;
+  background: var(--bg2);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  touch-action: manipulation;
+  border: 1px solid var(--border);
+}
+
+.emojiPicker {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+
+.emojiOption {
+  font-size: 1.6rem;
+  width: 44px; height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg3);
+  touch-action: manipulation;
+}
+
+.emojiSelected {
+  background: var(--accent);
+}
+
+.nameInput {
+  flex: 1;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 700;
+  outline: none;
+}
+.nameInput:focus { border-color: var(--accent); }
+.nameInput::placeholder { color: var(--muted); }
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.exerciseList {
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+
+.addBtn {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  touch-action: manipulation;
+  transition: border-color 0.2s, color 0.2s;
+}
+.addBtn:active { border-color: var(--accent); color: var(--accent2); }
+
+.deleteBtn {
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--danger);
+  font-size: 0.9rem;
+  font-weight: 600;
+  touch-action: manipulation;
+  transition: background 0.2s;
+}
+.deleteBtn:active { background: rgba(239, 68, 68, 0.1); }
