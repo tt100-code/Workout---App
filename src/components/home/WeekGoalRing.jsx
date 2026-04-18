@@ -10,7 +10,7 @@ function ringColor(completed) {
   return 'var(--bg3)'                  // noch nichts
 }
 
-export function WeekGoalRing({ completed, goal, onChangeGoal }) {
+export function WeekGoalRing({ completed, goal }) {
   const progress   = goal > 0 ? Math.min(completed / goal, 1) : 0
   const dashOffset = CIRCUMFERENCE * (1 - progress)
   const color      = ringColor(completed)
@@ -38,10 +38,6 @@ export function WeekGoalRing({ completed, goal, onChangeGoal }) {
         </div>
       </div>
 
-      <div className={styles.controls}>
-        <button className={styles.stepBtn} onClick={() => onChangeGoal(Math.max(1, goal - 1))}>−</button>
-        <button className={styles.stepBtn} onClick={() => onChangeGoal(Math.min(14, goal + 1))}>+</button>
-      </div>
     </div>
   )
 }
