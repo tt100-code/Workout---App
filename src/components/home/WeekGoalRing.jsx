@@ -47,12 +47,6 @@ export function WeekGoalRing({ completed, goal, streak }) {
         </div>
       </div>
 
-      {streak > 0 && (
-        <div className={styles.streak}>
-          <span>🔥</span>
-          <span className={styles.streakNum}>{streak}</span>
-        </div>
-      )}
     </div>
   )
 }
