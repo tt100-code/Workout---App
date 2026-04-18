@@ -1,37 +1,40 @@
 .page { display: flex; flex-direction: column; height: 100%; }
 
 .header {
-  padding: calc(1.5rem + var(--safe-top)) 1.2rem 0.5rem;
+  padding: calc(1.5rem + var(--safe-top)) 1.2rem 0.75rem;
+  background: var(--bg2);
 }
 
 .title {
-  font-size: 1.7rem;
-  font-weight: 900;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 .sub {
   font-size: 0.82rem;
   color: var(--muted);
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
+  font-weight: 400;
 }
 
 .list {
   padding: 1rem 1.2rem;
-  display: flex; flex-direction: column; gap: 0.75rem;
+  display: flex; flex-direction: column; gap: 0.6rem;
 }
 
 .fab {
   position: fixed;
-  bottom: calc(var(--nav-height) + var(--safe-bottom) + 1rem);
+  bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px) + 1rem);
   right: 1.2rem;
-  width: 56px; height: 56px;
+  width: 52px; height: 52px;
   border-radius: 50%;
   background: var(--accent);
   color: #fff;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 24px rgba(108, 99, 255, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   touch-action: manipulation;
   transition: transform 0.15s, opacity 0.15s;
   z-index: 30;
 }
-.fab:active { transform: scale(0.93); opacity: 0.85; }
+.fab:active { transform: scale(0.92); opacity: 0.8; }

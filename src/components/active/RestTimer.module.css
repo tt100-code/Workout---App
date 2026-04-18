@@ -6,10 +6,10 @@
 }
 
 .label {
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: var(--muted);
 }
 
@@ -28,13 +28,13 @@
 .track {
   fill: none;
   stroke: var(--bg3);
-  stroke-width: 8;
+  stroke-width: 6;
 }
 
 .fill {
   fill: none;
-  stroke: var(--warning);
-  stroke-width: 8;
+  stroke: var(--text);
+  stroke-width: 6;
   stroke-linecap: round;
   transition: stroke-dashoffset 1s linear;
 }
@@ -46,26 +46,28 @@
 
 .seconds {
   font-size: 3rem;
-  font-weight: 900;
-  color: var(--warning);
+  font-weight: 700;
+  color: var(--text);
   line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 .sec {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  font-weight: 500;
 }
 
 .skipBtn {
   color: var(--muted);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
   touch-action: manipulation;
   padding: 0.5rem 1rem;
   border-radius: var(--radius-sm);
-  transition: color 0.2s;
+  transition: color 0.15s;
   margin-top: auto;
 }
 .skipBtn:active { color: var(--text); }

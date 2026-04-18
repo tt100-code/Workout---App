@@ -3,19 +3,19 @@
 
 /* ─── Design Tokens ─── */
 :root {
-  --bg:         #0f0f23;
-  --bg2:        #1a1a35;
-  --bg3:        #242444;
-  --accent:     #6c63ff;
-  --accent2:    #8b85ff;
-  --success:    #22c55e;
-  --warning:    #f59e0b;
-  --danger:     #ef4444;
-  --text:       #f0f0ff;
-  --muted:      rgba(240, 240, 255, 0.5);
-  --border:     rgba(240, 240, 255, 0.1);
+  --bg:         #ffffff;
+  --bg2:        #f2f2f7;
+  --bg3:        #e5e5ea;
+  --accent:     #000000;
+  --accent2:    #3c3c43;
+  --success:    #34c759;
+  --warning:    #ff9500;
+  --danger:     #ff3b30;
+  --text:       #000000;
+  --muted:      rgba(60, 60, 67, 0.55);
+  --border:     rgba(60, 60, 67, 0.15);
   --radius:     14px;
-  --radius-sm:  8px;
+  --radius-sm:  10px;
   --nav-height: 64px;
   --safe-top:    env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -29,13 +29,12 @@ html {
 
 body {
   height: 100%;
-  background: var(--bg);
+  background: var(--bg2);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
   line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  /* Prevent tap highlight on iOS */
   -webkit-tap-highlight-color: transparent;
 }
 

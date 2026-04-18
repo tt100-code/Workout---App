@@ -1,15 +1,15 @@
 .card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
+  background: var(--bg);
   border-radius: var(--radius);
   padding: 1.2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
 .title {
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--muted);
   margin-bottom: 1rem;
 }
@@ -22,27 +22,28 @@
 
 .stat {
   display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
-  background: var(--bg3);
+  background: var(--bg2);
   border-radius: var(--radius-sm);
   padding: 0.75rem 0.5rem;
 }
 
 .value {
   font-size: 1.6rem;
-  font-weight: 900;
-  color: var(--accent2);
+  font-weight: 700;
+  color: var(--text);
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .value small {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 500;
   color: var(--muted);
   margin-left: 1px;
 }
 
 .label {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;

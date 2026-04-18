@@ -1,9 +1,9 @@
-.page { display: flex; flex-direction: column; height: 100%; }
+.page { display: flex; flex-direction: column; height: 100%; background: var(--bg2); }
 
 .saveBtn {
-  color: var(--accent2);
-  font-size: 0.9rem;
-  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 600;
   touch-action: manipulation;
 }
 
@@ -11,6 +11,7 @@
   padding: 1.2rem;
   border-bottom: 1px solid var(--border);
   display: flex; flex-direction: column; gap: 0.75rem;
+  background: var(--bg2);
 }
 
 .nameRow {
@@ -18,52 +19,57 @@
 }
 
 .emojiBtn {
-  font-size: 2rem;
+  font-size: 1.8rem;
   width: 52px; height: 52px;
-  background: var(--bg2);
+  background: var(--bg);
   border-radius: var(--radius-sm);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   touch-action: manipulation;
-  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
 .emojiPicker {
   display: flex; flex-wrap: wrap; gap: 0.4rem;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
 }
 
 .emojiOption {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   width: 44px; height: 44px;
-  border-radius: var(--radius-sm);
+  border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  background: var(--bg3);
   touch-action: manipulation;
 }
+.emojiOption:active { background: var(--bg2); }
 
 .emojiSelected {
-  background: var(--accent);
+  background: var(--bg2);
+  outline: 2px solid var(--accent);
 }
 
 .nameInput {
   flex: 1;
-  background: var(--bg2);
-  border: 1px solid var(--border);
+  background: var(--bg);
+  border: none;
   border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
   color: var(--text);
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.05rem;
+  font-weight: 600;
   outline: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  letter-spacing: -0.01em;
 }
-.nameInput:focus { border-color: var(--accent); }
-.nameInput::placeholder { color: var(--muted); }
+.nameInput::placeholder { color: var(--muted); font-weight: 400; }
 
 .sectionTitle {
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--muted);
 }
 
@@ -74,26 +80,26 @@
 .addBtn {
   display: flex; align-items: center; justify-content: center;
   gap: 0.4rem;
-  padding: 0.75rem;
+  padding: 0.8rem;
   border-radius: var(--radius-sm);
-  border: 1px dashed var(--border);
-  color: var(--muted);
+  background: var(--bg);
+  color: var(--accent);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
   touch-action: manipulation;
-  transition: border-color 0.2s, color 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
-.addBtn:active { border-color: var(--accent); color: var(--accent2); }
+.addBtn:active { background: var(--bg3); }
 
 .deleteBtn {
   width: 100%;
   padding: 0.85rem;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: var(--bg);
   color: var(--danger);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
   touch-action: manipulation;
-  transition: background 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
-.deleteBtn:active { background: rgba(239, 68, 68, 0.1); }
+.deleteBtn:active { background: rgba(255, 59, 48, 0.08); }

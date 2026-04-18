@@ -1,11 +1,11 @@
 .card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
+  background: var(--bg);
   border-radius: var(--radius);
   padding: 1.1rem 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
 .header {
@@ -24,8 +24,9 @@
 
 .name {
   font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.15rem;
 }
 
 .meta {
@@ -40,28 +41,28 @@
 
 .btnEdit {
   flex: 1;
-  padding: 0.6rem;
+  padding: 0.65rem;
   border-radius: var(--radius-sm);
-  background: var(--bg3);
-  color: var(--muted);
+  background: var(--bg2);
+  color: var(--accent2);
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 500;
   touch-action: manipulation;
   transition: background 0.15s;
 }
-.btnEdit:active { background: #2e2e60; }
+.btnEdit:active { background: var(--bg3); }
 
 .btnPlay {
   flex: 2;
   display: flex; align-items: center; justify-content: center;
   gap: 0.4rem;
-  padding: 0.6rem;
+  padding: 0.65rem;
   border-radius: var(--radius-sm);
   background: var(--accent);
   color: #fff;
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 600;
   touch-action: manipulation;
-  transition: background 0.15s;
+  transition: opacity 0.15s;
 }
-.btnPlay:active { background: #5a52e0; }
+.btnPlay:active { opacity: 0.75; }

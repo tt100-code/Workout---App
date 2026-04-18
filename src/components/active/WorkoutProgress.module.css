@@ -6,10 +6,9 @@
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
-.label span { color: var(--muted); }
 
 .bar {
-  height: 4px;
+  height: 3px;
   background: var(--bg3);
   border-radius: 2px;
   overflow: hidden;
