@@ -5,6 +5,7 @@ import { TopBar } from '../components/layout/TopBar'
 import { WorkoutProgress } from '../components/active/WorkoutProgress'
 import { SetTracker } from '../components/active/SetTracker'
 import { RestTimer } from '../components/active/RestTimer'
+import { WorkoutTimer } from '../components/active/WorkoutTimer'
 import styles from './ActiveWorkoutScreen.module.css'
 
 // ─── State Machine ────────────────────────────────────────────────────────────
@@ -152,7 +153,7 @@ export function ActiveWorkoutScreen() {
 
   return (
     <div className={styles.page}>
-      <TopBar title={workout.name} />
+      <TopBar title={workout.name} action={<WorkoutTimer startTime={state.startTime} />} />
       <div className="screen-no-nav" style={{ display: 'flex', flexDirection: 'column' }}>
         <WorkoutProgress
           exerciseIndex={state.exerciseIndex}

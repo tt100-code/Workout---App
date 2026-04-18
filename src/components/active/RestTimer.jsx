@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useTimer } from '../../hooks/useTimer'
+import { playBell, vibrate } from '../../utils/sound'
 import styles from './RestTimer.module.css'
 
 const RADIUS = 54
@@ -9,7 +10,13 @@ export function RestTimer({ totalSecs, onDone }) {
   const { remaining, start, isDone } = useTimer(totalSecs)
 
   useEffect(() => { start(totalSecs) }, [totalSecs])
-  useEffect(() => { if (isDone) onDone() }, [isDone])
+  useEffect(() => {
+    if (isDone) {
+      playBell()
+      vibrate()
+      onDone()
+    }
+  }, [isDone])
 
   const progress = totalSecs > 0 ? remaining / totalSecs : 0
   const dashOffset = CIRCUMFERENCE * (1 - progress)

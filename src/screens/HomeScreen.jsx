@@ -1,12 +1,18 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 import { WorkoutCard } from '../components/workout/WorkoutCard'
+import { WeekGoalRing } from '../components/home/WeekGoalRing'
 import { BottomNav } from '../components/layout/BottomNav'
+import { getWeekStats } from '../utils/statsCalculator'
 import styles from './HomeScreen.module.css'
 
 export function HomeScreen() {
-  const { workouts } = useApp()
+  const { workouts, history } = useApp()
   const navigate = useNavigate()
+  const [weekGoal, setWeekGoal] = useLocalStorage('ft_week_goal', 4)
+
+  const weekStats = getWeekStats(history)
 
   return (
     <div className={styles.page}>
@@ -17,6 +23,12 @@ export function HomeScreen() {
         </div>
 
         <div className={styles.list}>
+          <WeekGoalRing
+            completed={weekStats.workouts}
+            goal={weekGoal}
+            onChangeGoal={setWeekGoal}
+          />
+
           {workouts.map(w => (
             <WorkoutCard key={w.id} workout={w} />
           ))}
