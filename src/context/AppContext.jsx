@@ -36,8 +36,17 @@ function reducer(state, action) {
     case 'DELETE_WORKOUT':
       return { ...state, workouts: state.workouts.filter(w => w.id !== action.payload) }
 
-    case 'ADD_SESSION':
-      return { ...state, history: [...state.history, action.payload] }
+    case 'ADD_SESSION': {
+      // Replace any existing session for the same day (manual entries), then append
+      const dateKey = action.payload.date.slice(0, 10)
+      const filtered = action.dateKey
+        ? state.history.filter(s => s.date.slice(0, 10) !== action.dateKey)
+        : state.history
+      return { ...state, history: [...filtered, action.payload] }
+    }
+
+    case 'REMOVE_SESSION':
+      return { ...state, history: state.history.filter(s => s.date.slice(0, 10) !== action.dateKey) }
 
     default:
       return state
@@ -64,7 +73,8 @@ export function AppProvider({ children }) {
     addWorkout:    (w) => dispatch({ type: 'ADD_WORKOUT',    payload: w }),
     updateWorkout: (w) => dispatch({ type: 'UPDATE_WORKOUT', payload: w }),
     deleteWorkout: (id) => dispatch({ type: 'DELETE_WORKOUT', payload: id }),
-    addSession:    (s) => dispatch({ type: 'ADD_SESSION',    payload: s }),
+    addSession:    (s, dateKey) => dispatch({ type: 'ADD_SESSION', payload: s, dateKey }),
+    removeSession: (dateKey) => dispatch({ type: 'REMOVE_SESSION', dateKey }),
   }
 
   return (

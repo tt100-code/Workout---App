@@ -1,8 +1,21 @@
 import { startOfWeek, endOfWeek, startOfMonth, endOfMonth, parseISO, isWithinInterval } from 'date-fns'
 
-export function getDaysWithWorkouts(history) {
-  // Returns a Set of 'YYYY-MM-DD' strings
-  return new Set(history.map(s => s.date.slice(0, 10)))
+export function getDayWorkoutTypes(history) {
+  // Returns a Map of 'YYYY-MM-DD' → workoutType string
+  const map = new Map()
+  history.forEach(s => {
+    map.set(s.date.slice(0, 10), getWorkoutType(s.workoutName))
+  })
+  return map
+}
+
+export function getWorkoutType(name = '') {
+  const n = name.toLowerCase()
+  if (n.includes('push'))                      return 'push'
+  if (n.includes('pull'))                      return 'pull'
+  if (n.includes('leg') || n.includes('bein')) return 'leg'
+  if (n.includes('lauf') || n.includes('run')) return 'run'
+  return 'other'
 }
 
 export function getWeekStats(history, referenceDate = new Date()) {

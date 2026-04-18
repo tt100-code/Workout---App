@@ -1,19 +1,57 @@
 import { useState } from 'react'
+import { format, parseISO } from 'date-fns'
+import { de } from 'date-fns/locale'
 import { useApp } from '../context/AppContext'
 import { BottomNav } from '../components/layout/BottomNav'
 import { CalendarGrid } from '../components/tracker/CalendarGrid'
 import { StatCard } from '../components/tracker/StatCard'
-import { getDaysWithWorkouts, getWeekStats, getMonthStats } from '../utils/statsCalculator'
+import { WorkoutPicker } from '../components/tracker/WorkoutPicker'
+import { getDayWorkoutTypes, getWeekStats, getMonthStats } from '../utils/statsCalculator'
 import styles from './TrackerScreen.module.css'
 
 export function TrackerScreen() {
-  const { history } = useApp()
+  const { history, addSession, removeSession } = useApp()
   const now = new Date()
   const [viewDate] = useState(now)
+  const [pickerDay, setPickerDay] = useState(null) // 'YYYY-MM-DD' or null
 
-  const activeDays = getDaysWithWorkouts(history)
+  const dayTypes  = getDayWorkoutTypes(history)
   const weekStats  = getWeekStats(history, viewDate)
   const monthStats = getMonthStats(history, viewDate)
+
+  const handleDayPress = (dateKey) => {
+    setPickerDay(dateKey)
+  }
+
+  const handleSelect = (opt) => {
+    // Remove existing session for that day if any, then add new one
+    const date = new Date(pickerDay + 'T12:00:00')
+    date.setHours(0, 0, 0, 0)
+    addSession({
+      id:            crypto.randomUUID(),
+      workoutId:     'manual-' + opt.type,
+      workoutName:   opt.label,
+      date:          date.toISOString(),
+      durationSecs:  0,
+      completedSets: 0,
+      totalSets:     0,
+      exercises:     [],
+    }, pickerDay)
+    setPickerDay(null)
+  }
+
+  const handleRemove = () => {
+    removeSession(pickerDay)
+    setPickerDay(null)
+  }
+
+  const formatDayLabel = (dateKey) => {
+    try {
+      return format(parseISO(dateKey), 'EEEE, d. MMMM', { locale: de })
+    } catch {
+      return dateKey
+    }
+  }
 
   return (
     <div className={styles.page}>
@@ -27,7 +65,8 @@ export function TrackerScreen() {
           <CalendarGrid
             year={viewDate.getFullYear()}
             month={viewDate.getMonth()}
-            activeDays={activeDays}
+            dayTypes={dayTypes}
+            onDayPress={handleDayPress}
           />
 
           <StatCard
@@ -50,12 +89,21 @@ export function TrackerScreen() {
 
           {history.length === 0 && (
             <div className={styles.empty}>
-              <p>Noch keine Workouts abgeschlossen.</p>
-              <p className={styles.emptySub}>Starte dein erstes Training im Workouts-Tab!</p>
+              <p>Tippe auf einen Tag im Kalender um ein Training einzutragen.</p>
             </div>
           )}
         </div>
       </div>
+
+      {pickerDay && (
+        <WorkoutPicker
+          dateLabel={formatDayLabel(pickerDay)}
+          hasWorkout={dayTypes.has(pickerDay)}
+          onSelect={handleSelect}
+          onRemove={handleRemove}
+          onClose={() => setPickerDay(null)}
+        />
+      )}
 
       <BottomNav />
     </div>

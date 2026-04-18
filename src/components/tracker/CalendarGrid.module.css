@@ -45,7 +45,11 @@
   font-size: 0.85rem;
   font-weight: 400;
   color: var(--muted);
+  background: none;
+  touch-action: manipulation;
+  transition: background 0.15s;
 }
+.day:active { background: var(--bg2); }
 
 .day.today > span:first-child {
   background: var(--accent);
@@ -58,10 +62,41 @@
 
 .day.active { color: var(--text); font-weight: 500; }
 
+/* ─── Dots ─── */
 .dot {
-  width: 4px; height: 4px;
+  width: 5px; height: 5px;
   border-radius: 50%;
-  background: var(--accent);
   position: absolute;
   bottom: 3px;
+}
+
+.push  { background: #4878A0; }
+.pull  { background: #4A9085; }
+.leg   { background: #7265B0; }
+.run   { background: #4D9A6A; }
+.other { background: #888; }
+
+/* ─── Legend ─── */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.legendDot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }

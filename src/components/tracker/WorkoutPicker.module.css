@@ -1,0 +1,111 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 60;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.sheet {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--bg2);
+  border-radius: 14px 14px 0 0;
+  padding: 0.75rem 1rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  z-index: 61;
+  animation: slideUp 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.handle {
+  width: 36px; height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 0 auto 1rem;
+}
+
+.dateLabel {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.options {
+  background: var(--bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.95rem 1rem;
+  border-bottom: 1px solid var(--border);
+  touch-action: manipulation;
+  transition: background 0.12s;
+  text-align: left;
+}
+.option:last-child { border-bottom: none; }
+.option:active { background: var(--bg2); }
+
+.optionDot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.optionLabel {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.option svg {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.removeBtn {
+  width: 100%;
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 0.95rem 1rem;
+  color: var(--danger);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+  touch-action: manipulation;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.removeBtn:active { background: var(--bg2); }
+
+.cancelBtn {
+  width: 100%;
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 0.95rem 1rem;
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  touch-action: manipulation;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.cancelBtn:active { background: var(--bg2); }
